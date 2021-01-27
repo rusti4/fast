@@ -1,5 +1,5 @@
 import { Type } from "@microsoft/fast-tooling/dist/css-data.types";
-import { renderDefault } from "./control.css.utilities";
+import { renderDefault, renderInteger, renderNumber } from "./control.css.utilities";
 import { RenderRefControlConfig } from "./control.css.utilities.props";
 import React from "react";
 
@@ -20,8 +20,10 @@ export function renderTypeControl(config: RenderRefControlConfig): React.ReactNo
         case "<flex>":
         case "<ident>":
         case "<integer>":
+            return renderInteger(config);
         case "<length>":
         case "<number>":
+            return renderNumber(config);
         case "<percentage>":
         case "<ratio>":
         case "<resolution>":

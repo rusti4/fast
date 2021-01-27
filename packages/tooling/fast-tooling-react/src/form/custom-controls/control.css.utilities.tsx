@@ -8,6 +8,7 @@ import {
 } from "./control.css.utilities.props";
 import {
     FASTCheckbox,
+    FASTNumberField,
     FASTOption,
     FASTSelect,
     FASTTextField,
@@ -17,6 +18,7 @@ import {
  * Ensure tree-shaking doesn't remove these components from the bundle.
  */
 FASTCheckbox;
+FASTNumberField;
 FASTOption;
 FASTSelect;
 FASTTextField;
@@ -25,7 +27,7 @@ export function renderDefault(config: RenderRefControlConfig): React.ReactNode {
     return renderTextInput(config);
 }
 
-function getTextInputChangeHandler(
+function getInputChangeHandler(
     parentChangeHandler: (value: string) => void
 ): (e: React.ChangeEvent<HTMLInputElement>) => void {
     let timer: null | NodeJS.Timer = null;
@@ -47,9 +49,32 @@ export function renderTextInput(config: RenderRefControlConfig): React.ReactNode
         <fast-text-field
             key={config.key}
             events={{
-                input: getTextInputChangeHandler(config.handleChange),
+                input: getInputChangeHandler(config.handleChange),
             }}
         ></fast-text-field>
+    );
+}
+
+export function renderNumber(config: RenderRefControlConfig): React.ReactNode {
+    return (
+        <fast-number-field
+            key={config.key}
+            events={{
+                input: getInputChangeHandler(config.handleChange),
+            }}
+        ></fast-number-field>
+    );
+}
+
+export function renderInteger(config: RenderRefControlConfig): React.ReactNode {
+    return (
+        <fast-number-field
+            key={config.key}
+            events={{
+                input: getInputChangeHandler(config.handleChange),
+            }}
+            step={1}
+        ></fast-number-field>
     );
 }
 
