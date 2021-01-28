@@ -1,15 +1,15 @@
 import { STORY_RENDERED } from "@storybook/core-events";
 import addons from "@storybook/addons";
 import { FASTDesignSystemProvider } from "../design-system-provider";
-import TextFieldTemplate from "./fixtures/text-field.html";
-import { FASTTextField } from "./";
+import PeoplePickerTemplate from "./fixtures/people-picker.html";
+import { FASTPeoplePicker } from "./";
 
 // Prevent tree-shaking
-FASTTextField;
+FASTPeoplePicker;
 FASTDesignSystemProvider;
 
 addons.getChannel().addListener(STORY_RENDERED, (name: string) => {
-    if (name.toLowerCase().startsWith("text-field")) {
+    if (name.toLowerCase().startsWith("people-picker")) {
         setFormCallback();
     }
 });
@@ -29,7 +29,7 @@ function setFormCallback(): void {
 }
 
 export default {
-    title: "Text Field",
+    title: "People picker",
 };
 
-export const TextField = () => TextFieldTemplate;
+export const PeoplePicker = () => PeoplePickerTemplate;

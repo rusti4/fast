@@ -578,6 +578,17 @@ export interface DelegatesARIAListbox extends ARIAGlobalStatesAndProperties {
 }
 
 // Warning: (ae-different-release-tags) This symbol has another declaration with a different release tag
+// Warning: (ae-internal-mixed-release-tag) Mixed release tags are not allowed for "DelegatesARIAPeoplePicker" because one of its declarations is marked as @internal
+//
+// @public
+export class DelegatesARIAPeoplePicker {
+}
+
+// @internal
+export interface DelegatesARIAPeoplePicker extends ARIAGlobalStatesAndProperties {
+}
+
+// Warning: (ae-different-release-tags) This symbol has another declaration with a different release tag
 // Warning: (ae-internal-mixed-release-tag) Mixed release tags are not allowed for "DelegatesARIASelect" because one of its declarations is marked as @internal
 //
 // @public
@@ -1074,6 +1085,32 @@ export interface NumberField extends StartEnd, DelegatesARIATextbox {
 
 // @public
 export const NumberFieldTemplate: import("@microsoft/fast-element").ViewTemplate<NumberField, any>;
+
+// Warning: (ae-different-release-tags) This symbol has another declaration with a different release tag
+// Warning: (ae-forgotten-export) The symbol "FormAssociatedPeoplePicker" needs to be exported by the entry point index.d.ts
+// Warning: (ae-internal-mixed-release-tag) Mixed release tags are not allowed for "PeoplePicker" because one of its declarations is marked as @internal
+//
+// @public
+export class PeoplePicker extends FormAssociatedPeoplePicker {
+    autofocus: boolean;
+    // @internal (undocumented)
+    connectedCallback(): void;
+    // @internal
+    control: HTMLInputElement;
+    // @internal
+    handleChange(): void;
+    // @internal
+    handleTextInput(): void;
+    placeholder: string;
+    readOnly: boolean;
+    }
+
+// @internal
+export interface PeoplePicker extends DelegatesARIAPeoplePicker {
+}
+
+// @public
+export const PeoplePickerTemplate: import("@microsoft/fast-element").ViewTemplate<PeoplePicker, any>;
 
 // @public
 export const ProgressRingTemplate: import("@microsoft/fast-element").ViewTemplate<BaseProgress, any>;

@@ -1,18 +1,14 @@
-import { attr, DOM, nullableNumberConverter, observable } from "@microsoft/fast-element";
+import { attr, DOM, observable } from "@microsoft/fast-element";
 import { ARIAGlobalStatesAndProperties, StartEnd } from "../patterns/index";
 import { applyMixins } from "../utilities/index";
-import { FormAssociatedTextField } from "./text-field.form-associated";
-import { TextFieldType } from "./text-field.options";
-
-export { TextFieldType };
+import { FormAssociatedPeoplePicker } from "./people-picker.form-associated";
 
 /**
- * A Text Field Custom HTML Element.
- * Based largely on the {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text | <input type="text" /> element }.
+ * A People Picker Custom HTML Element.
  *
  * @public
  */
-export class TextField extends FormAssociatedTextField {
+export class PeoplePicker extends FormAssociatedPeoplePicker {
     /**
      * When true, the control will be immutable by user interaction. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly | readonly HTML attribute} for more information.
      * @public
@@ -58,114 +54,55 @@ export class TextField extends FormAssociatedTextField {
         }
     }
 
-    /**
-     * Allows setting a type or mode of text.
-     * @public
-     * @remarks
-     * HTML Attribute: type
-     */
-    @attr
-    public type: TextFieldType = TextFieldType.text;
-    private typeChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.type = this.type;
-            this.validate();
-        }
-    }
+    // /**
+    //  * Allows associating a {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist | datalist} to the element by {@link https://developer.mozilla.org/en-US/docs/Web/API/Element/id}.
+    //  * @public
+    //  * @remarks
+    //  * HTML Attribute: list
+    //  */
+    // @attr
+    // public list: string;
+    // private listChanged(): void {
+    //     if (this.proxy instanceof HTMLElement) {
+    //         this.proxy.setAttribute("list", this.list);
+    //         this.validate();
+    //     }
+    // }
 
-    /**
-     * Allows associating a {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist | datalist} to the element by {@link https://developer.mozilla.org/en-US/docs/Web/API/Element/id}.
-     * @public
-     * @remarks
-     * HTML Attribute: list
-     */
-    @attr
-    public list: string;
-    private listChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.setAttribute("list", this.list);
-            this.validate();
-        }
-    }
+    // /**
+    //  * A regular expression that the value must match to pass validation.
+    //  * @public
+    //  * @remarks
+    //  * HTMLAttribute: pattern
+    //  */
+    // @attr
+    // public pattern: string;
+    // private patternChanged(): void {
+    //     if (this.proxy instanceof HTMLElement) {
+    //         this.proxy.pattern = this.pattern;
+    //         this.validate();
+    //     }
+    // }
 
-    /**
-     * The maximum number of characters a user can enter.
-     * @public
-     * @remarks
-     * HTMLAttribute: maxlength
-     */
-    @attr({ converter: nullableNumberConverter })
-    public maxlength: number;
-    private maxlengthChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.maxLength = this.maxlength;
-            this.validate();
-        }
-    }
+    // /**
+    //  * Sets the width of the element to a specified number of characters.
+    //  * @public
+    //  * @remarks
+    //  * HTMLAttribute: size
+    //  */
+    // @attr({ mode: "boolean" })
+    // public spellcheck: boolean;
+    // private spellcheckChanged(): void {
+    //     if (this.proxy instanceof HTMLElement) {
+    //         this.proxy.spellcheck = this.spellcheck;
+    //     }
+    // }
 
-    /**
-     * The minimum number of characters a user can enter.
-     * @public
-     * @remarks
-     * HTMLAttribute: minlength
-     */
-    @attr({ converter: nullableNumberConverter })
-    public minlength: number;
-    private minlengthChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.minLength = this.minlength;
-            this.validate();
-        }
-    }
-
-    /**
-     * A regular expression that the value must match to pass validation.
-     * @public
-     * @remarks
-     * HTMLAttribute: pattern
-     */
-    @attr
-    public pattern: string;
-    private patternChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.pattern = this.pattern;
-            this.validate();
-        }
-    }
-
-    /**
-     * Sets the width of the element to a specified number of characters.
-     * @public
-     * @remarks
-     * HTMLAttribute: size
-     */
-    @attr({ converter: nullableNumberConverter })
-    public size: number;
-    private sizeChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.size = this.size;
-        }
-    }
-
-    /**
-     * Sets the width of the element to a specified number of characters.
-     * @public
-     * @remarks
-     * HTMLAttribute: size
-     */
-    @attr({ mode: "boolean" })
-    public spellcheck: boolean;
-    private spellcheckChanged(): void {
-        if (this.proxy instanceof HTMLElement) {
-            this.proxy.spellcheck = this.spellcheck;
-        }
-    }
-
-    /**
-     * @internal
-     */
-    @observable
-    public defaultSlottedNodes: Node[];
+    // /**
+    //  * @internal
+    //  */
+    // @observable
+    // public defaultSlottedNodes: Node[];
 
     /**
      * A reference to the internal input element
@@ -179,7 +116,7 @@ export class TextField extends FormAssociatedTextField {
     public connectedCallback(): void {
         super.connectedCallback();
 
-        this.proxy.setAttribute("type", this.type);
+        this.proxy.setAttribute("type", "text");
         this.validate();
 
         if (this.autofocus) {
@@ -212,11 +149,11 @@ export class TextField extends FormAssociatedTextField {
 }
 
 /**
- * Includes ARIA states and properties relating to the ARIA textbox role
+ * Includes ARIA states and properties
  *
  * @public
  */
-export class DelegatesARIATextbox {}
+export class DelegatesARIAPeoplePicker {}
 
 /**
  * Mark internal because exporting class and interface of the same name
@@ -225,8 +162,8 @@ export class DelegatesARIATextbox {}
  * @internal
  */
 /* eslint-disable-next-line */
-export interface DelegatesARIATextbox extends ARIAGlobalStatesAndProperties {}
-applyMixins(DelegatesARIATextbox, ARIAGlobalStatesAndProperties);
+export interface DelegatesARIAPeoplePicker extends ARIAGlobalStatesAndProperties {}
+applyMixins(DelegatesARIAPeoplePicker, ARIAGlobalStatesAndProperties);
 
 /**
  * Mark internal because exporting class and interface of the same name
@@ -234,5 +171,5 @@ applyMixins(DelegatesARIATextbox, ARIAGlobalStatesAndProperties);
  * TODO: https://github.com/microsoft/fast/issues/3317
  * @internal
  */
-export interface TextField extends StartEnd, DelegatesARIATextbox {}
-applyMixins(TextField, StartEnd, DelegatesARIATextbox);
+export interface PeoplePicker extends DelegatesARIAPeoplePicker {}
+applyMixins(PeoplePicker, DelegatesARIAPeoplePicker);

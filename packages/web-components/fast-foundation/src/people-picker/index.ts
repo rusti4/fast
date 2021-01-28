@@ -1,2 +1,2 @@
-export * from "./text-field.template";
-export * from "./text-field";
+export * from "./people-picker.template";
+export * from "./people-picker";

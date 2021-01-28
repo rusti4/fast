@@ -1,4 +1,4 @@
----
+<!-- ---
 id: text-field
 title: fast-text-field
 sidebar_label: text-field
@@ -36,4 +36,4 @@ import { TextFieldStyles as styles } from "./text-field.styles";
     },
 })
 export class FASTTextField extends TextField {}
-```
+``` -->

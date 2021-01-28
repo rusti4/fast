@@ -30,6 +30,7 @@ import { ListboxOption } from '@microsoft/fast-foundation';
 import { Menu } from '@microsoft/fast-foundation';
 import { MenuItem } from '@microsoft/fast-foundation';
 import { NumberField } from '@microsoft/fast-foundation';
+import { PeoplePicker } from '@microsoft/fast-foundation';
 import { Radio } from '@microsoft/fast-foundation';
 import { RadioGroup } from '@microsoft/fast-foundation';
 import { Select } from '@microsoft/fast-foundation';
@@ -580,6 +581,10 @@ export class FASTOption extends ListboxOption {
 }
 
 // @public
+export class FASTPeoplePicker extends PeoplePicker {
+}
+
+// @public
 export class FASTProgress extends BaseProgress {
 }
 
@@ -1056,6 +1061,9 @@ export enum PaletteType {
 
 // @public
 export const parseColorString: (color: string) => ColorRGBA64;
+
+// @public
+export const PeoplePickerStyles: import("@microsoft/fast-element").ElementStyles;
 
 // @public
 export const ProgressRingStyles: import("@microsoft/fast-element").ElementStyles;
